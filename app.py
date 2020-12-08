@@ -658,16 +658,7 @@ test = [
 ['jmp', -4, 0],
 ['acc', 6, 0]]
 
-[
-['nop', 0, 1], 
-['acc', 1, 1], 
-['jmp', 4, 1], 
-['acc', 3, 1], 
-['jmp', -3, 1], 
-['acc', -99, 0], 
-['acc', 1, 1], 
-['jmp', -4, 1], 
-['acc', 6, 0]]
+
 
 
 def find_loop(list):
@@ -692,18 +683,15 @@ def find_loop(list):
       running_count += x[1]
       x[2] += 1
       index_to_check += 1
-      # print([running_count], [index_to_check], [x])
     elif x[0] == 'jmp':
       x[2] += 1
       index_to_check += x[1]
-      # print([running_count], [index_to_check], [x])
     elif x[0] == 'nop':
       x[2] += 1
       index_to_check += 1
-      # print([running_count], [index_to_check], [x])
 
-print(find_loop(test))
-print(find_loop([['nop', 0, 1], ['acc', 1, 1], ['jmp', 4, 1], ['acc', 3, 1], ['jmp', -3, 1], ['acc', -99, 0], ['acc', 1, 1], ['jmp', -4, 1], ['acc', 6, 0]]))
+# print(find_loop(test))
+
 # print(find_loop(commands))
 
 
@@ -711,24 +699,25 @@ print(find_loop([['nop', 0, 1], ['acc', 1, 1], ['jmp', 4, 1], ['acc', 3, 1], ['j
 
 def find_break_2(array):
   i = 0
-  
   while i < len(array):
     x = array[i]
     if x[0] == 'nop':
-      x = ['jmp', x[1], x[2]]
+      x = ['jmp', x[1], 0]
       new_array = array.copy()
       new_array[i:i+1] = [x]
-      print(new_array)
-      # print(find_loop(new_array))
+      # print(new_array)
       i += 1
+      print(find_loop(new_array))
+      
     
     elif x[0] == 'jmp':
-      x = ['nop', x[1], x[2]]
-      new_array = array.copy()
-      new_array[i:i+1] = [x]
-      print(new_array)
-      # print(find_loop(new_array))
+      x = ['nop', x[1], 0]
+      new_array_2 = array.copy()
+      new_array_2[i:i+1] = [x]
+      # print(new_array_2)
       i += 1
+      print(find_loop(new_array_2))
+      
     
     elif x[0] == 'acc':
       i += 1
@@ -736,3 +725,9 @@ def find_break_2(array):
     
 
 print(find_break_2(test))
+
+
+print(find_loop([['jmp', 0, 0], ['acc', 1, 0], ['jmp', 4, 0], ['acc', 3, 0], ['jmp', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['jmp', -4, 0], ['acc', 6, 0]]))
+print(find_loop([['nop', 0, 0], ['acc', 1, 0], ['nop', 4, 0], ['acc', 3, 0], ['jmp', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['jmp', -4, 0], ['acc', 6, 0]]))
+print(find_loop([['nop', 0, 0], ['acc', 1, 0], ['jmp', 4, 0], ['acc', 3, 0], ['nop', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['jmp', -4, 0], ['acc', 6, 0]]))
+print(find_loop([['nop', 0, 0], ['acc', 1, 0], ['jmp', 4, 0], ['acc', 3, 0], ['jmp', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['nop', -4, 0], ['acc', 6, 0]]))
