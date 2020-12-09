@@ -655,7 +655,7 @@ test = [
 ['jmp', -3, 0],
 ['acc', -99, 0],
 ['acc', 1, 0],
-['jmp', -4, 0],
+['nop', -4, 0],
 ['acc', 6, 0]]
 
 
@@ -699,35 +699,39 @@ def find_loop(list):
 
 def find_break_2(array):
   i = 0
-  while i < len(array):
-    x = array[i]
-    if x[0] == 'nop':
-      x = ['jmp', x[1], 0]
-      new_array = array.copy()
-      new_array[i:i+1] = [x]
-      # print(new_array)
-      i += 1
-      print(find_loop(new_array))
-      
+  count_array = array.copy()
+
+  while i < len(count_array):
+    y = array[i]
+    new_array = array.copy()
     
-    elif x[0] == 'jmp':
-      x = ['nop', x[1], 0]
-      new_array_2 = array.copy()
-      new_array_2[i:i+1] = [x]
-      # print(new_array_2)
+    if y[0] == 'nop':
+      y = ['jmp', y[1], 0]
+      new_array[i:i+1] = [y]
+      print(new_array)
+      print('if')
       i += 1
-      print(find_loop(new_array_2))
-      
-    
-    elif x[0] == 'acc':
+      # print(find_loop(new_array)) #* here
+      new_array = []
+      # print(new_array) #* here2
+
+    elif y[0] == 'jmp':
+      y = ['nop', y[1], 0]
+      new_array[i:i+1] = [y]
+      print(new_array)
+      print('else')
       i += 1
+      # print(find_loop(new_array)) #* here3 
+      new_array = []
+      # print(new_array) #* here4 
+
+    elif y[0] == 'acc':
+      # y = ['acc', y[1], 0]
+      # new_array[i:i+1] = [y]
+      i += 1
+      new_array = []
   return 'end'
     
 
 print(find_break_2(test))
 
-
-print(find_loop([['jmp', 0, 0], ['acc', 1, 0], ['jmp', 4, 0], ['acc', 3, 0], ['jmp', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['jmp', -4, 0], ['acc', 6, 0]]))
-print(find_loop([['nop', 0, 0], ['acc', 1, 0], ['nop', 4, 0], ['acc', 3, 0], ['jmp', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['jmp', -4, 0], ['acc', 6, 0]]))
-print(find_loop([['nop', 0, 0], ['acc', 1, 0], ['jmp', 4, 0], ['acc', 3, 0], ['nop', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['jmp', -4, 0], ['acc', 6, 0]]))
-print(find_loop([['nop', 0, 0], ['acc', 1, 0], ['jmp', 4, 0], ['acc', 3, 0], ['jmp', -3, 0], ['acc', -99, 0], ['acc', 1, 0], ['nop', -4, 0], ['acc', 6, 0]]))
