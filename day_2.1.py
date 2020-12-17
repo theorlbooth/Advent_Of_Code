@@ -1016,32 +1016,19 @@ def clean_data(array):
 # print(clean_data(passwords_to_sort))    
 
 
-# def count_instances(array):
-#   total_count = 0
-#   for x in array:
-#     letter_count = x[3].count(x[2])
-#     if letter_count >= int(x[0]) and letter_count <= int(x[1]):
-#       total_count += 1
-#     else:
-#       total_count += 0
-#   return total_count      
-
-# print(count_instances(clean_data(passwords_to_sort)))
-
-
-#  ! -----------
-
-
 def count_instances(array):
   total_count = 0
   for x in array:
-    if x[3][int(x[0]) - 1] == x[2] and x[3][int(x[1]) - 1] == x[2]:
-      total_count += 0
-    elif x[3][int(x[0]) - 1] == x[2] or x[3][int(x[1]) - 1] == x[2]:
+    letter_count = x[3].count(x[2])
+    if letter_count >= int(x[0]) and letter_count <= int(x[1]):
       total_count += 1
     else:
       total_count += 0
   return total_count      
 
-
 print(count_instances(clean_data(passwords_to_sort)))
+
+
+
+
+
