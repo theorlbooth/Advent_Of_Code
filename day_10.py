@@ -182,55 +182,55 @@ test_2 = [
 
 #  ! -----------
 
-from itertools import combinations
+# from itertools import combinations
 
 
-def find_gaps(list_array):
-  y = 1
-  x = 0
-  count_one = 0
-  count_three = 0
-  sorted_b = sorted(list_array)
-  while y < len(sorted_b):
-    if sorted_b[y] - sorted_b[y-1] == 1:
-      count_one += 1
-    elif sorted_b[y] - sorted_b[y-1] == 3:
-      count_three += 1
-    elif sorted_b[y] - sorted_b[y-1] > 3:
-      return
-    y += 1
-    x += 1
-  return 1
+# def find_gaps(list_array):
+#   y = 1
+#   x = 0
+#   count_one = 0
+#   count_three = 0
+#   sorted_b = sorted(list_array)
+#   while y < len(sorted_b):
+#     if sorted_b[y] - sorted_b[y-1] == 1:
+#       count_one += 1
+#     elif sorted_b[y] - sorted_b[y-1] == 3:
+#       count_three += 1
+#     elif sorted_b[y] - sorted_b[y-1] > 3:
+#       return
+#     y += 1
+#     x += 1
+#   return 1
 
-print(find_gaps(test))
-
-
-def find_num_comb(list_to_check):
-  sorted_a = sorted(list_to_check)
-  max_num = sorted_a[-1] + 3
-
-  new_array = [0] + [max_num] + sorted_a
-  sorted_c = sorted(new_array)
-
-  total_count = 0
-
-  all_combinations = []
-  for r in range(len(sorted_c) + 1):
-    combinations_object = combinations(sorted_c, r)
-    combinations_list = list(combinations_object)
-    all_combinations += combinations_list
-
-  for a in all_combinations:
-    abc = list(a)
-    if len(abc) != 0:
-      if abc[0] == 0 and abc[-1] == max_num:
-        if find_gaps(abc) == 1:
-          print(abc)
-          total_count += 1
-  return total_count
+# print(find_gaps(test))
 
 
-print(find_num_comb(test_2))
+# def find_num_comb(list_to_check):
+#   sorted_a = sorted(list_to_check)
+#   max_num = sorted_a[-1] + 3
+
+#   new_array = [0] + [max_num] + sorted_a
+#   sorted_c = sorted(new_array)
+
+#   total_count = 0
+
+#   all_combinations = []
+#   for r in range(len(sorted_c) + 1):
+#     combinations_object = combinations(sorted_c, r)
+#     combinations_list = list(combinations_object)
+#     all_combinations += combinations_list
+
+#   for a in all_combinations:
+#     abc = list(a)
+#     if len(abc) != 0:
+#       if abc[0] == 0 and abc[-1] == max_num:
+#         if find_gaps(abc) == 1:
+#           print(abc)
+#           total_count += 1
+#   return total_count
+
+
+# print(find_num_comb(test_2))
 
 # * --------------------------------------------------
 # * --------------------------------------------------
