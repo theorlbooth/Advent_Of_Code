@@ -23,6 +23,7 @@ def find_winning_cards(player_1, player_2):
     return ['Player 1', player_1]
 
 # print(find_winning_cards(player_1, player_2))
+# !
 
 
 winning_cards = [46, 24, 49, 22, 38, 15, 42, 13, 14, 4, 45, 5, 34, 3, 31, 25, 44, 30, 21, 16, 37, 7, 18, 2, 47, 23, 43, 19, 29, 26, 35, 33, 11, 9, 36, 20, 12, 10, 27, 17, 50, 41, 40, 6, 8, 1, 48, 39, 32, 28]
